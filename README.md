@@ -1,29 +1,47 @@
-# LaTeX Resume
+# Juan Becerra — Resume
 
-A clean, modern, and ATS-friendly LaTeX resume template compiled using **[Tectonic](https://tectonic-typesetting.github.io/)** — a lightweight, zero-configuration TeX engine that downloads required packages on the fly without needing a full multi-gigabyte TeX Live distribution.
+Professional resume for **Juan Becerra** (Software Engineer & Game Developer), tailored for AAA game engineering, runtime gameplay systems, and tools/tech-art pipelines.
 
-Based on the popular [Jake Gutierrez resume template](https://github.com/sb2nov/resume), customized and updated for native Unicode/XeTeX compilation.
-
----
-
-## Features
-
-- **Lightweight & Fast**: Powered by Tectonic; no massive TeX distributions required.
-- **ATS-Friendly**: Fully machine-readable with clean Unicode character mappings.
-- **Cross-Platform Build Scripts**: Includes scripts for PowerShell and Bash.
-- **Custom Output Naming**: Easily export role-specific or personalized filenames with a single argument.
-- **Clean Output Directory**: Compiles directly into `out/`, keeping your project root clutter-free.
-- **VS Code Integration**: Press <kbd>F5</kbd> to compile instantly using the *LaTeX Instant Runner* extension.
+Compiled to PDF using **[Tectonic](https://tectonic-typesetting.github.io/)** — a lightweight, modern TeX engine that handles native Unicode/XeTeX compilation and downloads required packages on the fly with zero configuration.
 
 ---
 
-## Quick Start
+## Profile Summary
+
+* **Role**: Software Engineer · Game Developer
+* **Location**: Seattle, WA
+* **Website / Portfolio**: [hoowan.dev](https://hoowan.dev)
+* **GitHub**: [github.com/hoowan-dev](https://github.com/hoowan-dev)
+* **LinkedIn**: [linkedin.com/in/hoowan](https://www.linkedin.com/in/hoowan/)
+* **Email**: [becerrajuan007@gmail.com](mailto:becerrajuan007@gmail.com)
+
+---
+
+## Overview & Highlights
+
+* **AAA Experience**: 5+ years across **Electronic Arts** (Lifestyle, Maxis Studios) and **Lionbridge**.
+  * *EA Lifestyle*: Maya/Python stylization tools, Unreal Engine C++ trajectory data export plugins for motion matching, ML-assisted authoring pipelines.
+  * *EA Maxis Studios (Project Rene / The Sims)*: Multi-threaded async path-planning APIs (<1.5ms budget), motion-matching locomotion, distance matching, custom IK solvers, designer tuning tools.
+  * *Lionbridge*: QA test leadership, technical repro pipelines, and engine diagnostics in JIRA.
+* **Featured Projects**:
+  * **Hoowan Game Engine**: Custom C++ engine with OpenGL rendering submission pipeline, EnTT ECS, event polling, collision detection, and editor application.
+  * **BroncoDrome**: 3rd-person vehicular combat game in Unreal Engine 4 and C++ with custom physics and AI navigation.
+  * **DoomSlop**: 3D browser first-person shooter built in Three.js and Vite with Web Audio API sound synthesis and automated GitHub Pages CI/CD.
+* **Core Competencies**:
+  * *Languages*: Modern C++, C#, Python, Rust, GLSL/HLSL, Java, JavaScript, SQL
+  * *Engines & Graphics*: Unreal Engine 5 (Source, Motion Matching, GAS, Mass/Crowd), Unity, Godot, Vulkan, OpenGL
+  * *Gameplay & Systems*: Locomotion & Character Physics, Async Navigation/Pathfinding, Animation Runtime (IK, Motion Matching), State Machines
+  * *Tools & Tech-Art*: Maya API, PySide/Qt, DCC Pipeline Automation, Plugin Development, In-Editor Debug Tooling
+
+---
+
+## Building the Resume
 
 ### Prerequisites
 
-Ensure **Tectonic** is available on your system. It can be found automatically in either:
-- Your system `PATH`
-- `~/.local/bin/tectonic` (installed automatically when using the VS Code extension)
+Compilation requires **Tectonic**, which is resolved automatically from:
+1. System `PATH`
+2. Local installation at `~/.local/bin/tectonic.exe` (installed automatically if using the VS Code extension)
 
 To install Tectonic manually if needed:
 - **Windows (PowerShell)**:
@@ -37,64 +55,56 @@ To install Tectonic manually if needed:
 
 ---
 
-## Building the Resume
+### Build Commands
 
-### Option 1: PowerShell (Windows)
+#### Option 1: PowerShell (Windows)
 
 ```powershell
-# Compile default: out/resume.pdf
+# Default build -> out/resume.pdf
 .\build.ps1
 
-# Compile with a custom name: out/Juan_Becerra_Resume.pdf
+# Custom output filename -> out/Juan_Becerra_Resume.pdf
 .\build.ps1 Juan_Becerra_Resume
 ```
 
-*(Note: Specifying the `.pdf` extension is optional; `.\build.ps1 Juan_Becerra_Resume.pdf` works identically).*
+*(Note: The `.pdf` extension is optional; `.\build.ps1 Juan_Becerra_Resume.pdf` works identically).*
 
-### Option 2: Bash / Git Bash (Linux / macOS / Windows)
+#### Option 2: Bash / Git Bash (Linux / macOS / Windows)
 
 ```bash
-# Compile default: out/resume.pdf
+# Default build -> out/resume.pdf
 ./build.sh
 
-# Compile with a custom name: out/Juan_Becerra_Resume.pdf
+# Custom output filename -> out/Juan_Becerra_Resume.pdf
 ./build.sh Juan_Becerra_Resume
 ```
 
-### Option 3: VS Code Interactive Build
+#### Option 3: VS Code Interactive Build
 
 1. Open `resume.tex` in VS Code.
-2. Press <kbd>F5</kbd> to run the **LaTeX Instant Runner**.
+2. Press <kbd>F5</kbd> to compile instantly via the **LaTeX Instant Runner** extension.
+
+Generated PDFs are always written directly into the `out/` directory to prevent root clutter.
 
 ---
 
 ## Project Structure
 
 ```text
-├── resume.tex              # Main LaTeX resume source
-├── build.ps1               # PowerShell build script
-├── build.sh                # Bash build script
-├── out/                    # Output directory for compiled PDFs
+├── resume.tex              # Main LaTeX resume source (single-page, ATS-optimized)
+├── build.ps1               # PowerShell build script (custom output name support)
+├── build.sh                # Bash / Unix build script
+├── out/                    # Output directory for compiled PDFs (ignored by git)
 ├── GEMINI.md               # Context & guidelines for Gemini AI
+├── README.md               # Repository documentation
 ├── .geminiignore           # Excluded patterns for Gemini AI
-├── .gitignore              # Git ignore rules for build artifacts
+├── .gitignore              # Git ignore rules
 └── resume.code-workspace   # VS Code workspace settings
 ```
 
 ---
 
-## Customization Tips
+## Credits & License
 
-- **Sections & Entries**: Use the custom macros defined in `resume.tex`:
-  - `\resumeSubheading{Role}{Dates}{Company}{Location}`
-  - `\resumeItem{Description}`
-  - `\resumeProjectHeading{Project Title | Tech Stack}{Dates}`
-- **Spacing**: Margins and line heights are calibrated in the preamble. Adjust `\vspace` increments if you need extra room to keep the document strictly single-page.
-
----
-
-## License & Credits
-
-- Template layout originally adapted from [sb2nov/resume](https://github.com/sb2nov/resume) by Jake Gutierrez.
+- Resume formatting adapted from the [Jake Gutierrez resume template](https://github.com/sb2nov/resume).
 - Released under the [MIT License](https://opensource.org/licenses/MIT).
-
