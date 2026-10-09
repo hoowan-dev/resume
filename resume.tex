@@ -101,13 +101,14 @@
 %----------HEADING----------
 \begin{center}
     {\Huge \scshape Juan Becerra} \\ \vspace{2pt}
+    \textbf{\large Software Engineer -- Gameplay, Animation \& Systems} \\ \vspace{3pt}
     \small Seattle, WA ~ $|$ ~
     \raisebox{-0.1\height}\faPhone\ (208) 550-9191 ~ $|$ ~
     \href{mailto:becerrajuan007@gmail.com}{\raisebox{-0.2\height}\faEnvelope\ \underline{becerrajuan007@gmail.com}} ~ $|$ ~
     \href{https://hoowan.dev}{\raisebox{-0.2\height}\faGlobe\ \underline{hoowan.dev}} \\ \vspace{2pt}
     \href{https://linkedin.com/in/hoowan/}{\raisebox{-0.2\height}\faLinkedin\ \underline{linkedin.com/in/hoowan}} ~ $|$ ~
     \href{https://github.com/hoowan-dev}{\raisebox{-0.2\height}\faGithub\ \underline{github.com/hoowan-dev}}
-    \vspace{-8pt}
+    \vspace{-6pt}
 \end{center}
 
 %-----------EXPERIENCE-----------
@@ -120,17 +121,17 @@
       \resumeItemListStart
         \resumeItem{Architected an extensible Maya/Python animation stylization tool adopted across multiple internal studios, reducing redundant manual keyframing workflows by over 70\%.}
         \resumeItem{Engineered a high-throughput Unreal Engine C++ plugin exporting runtime character trajectory, pose, and velocity data to train and populate motion-matching query databases.}
-        \resumeItem{Prototyped and integrated ML-assisted authoring pipelines into DCC tools, enabling automated asset tagging and procedural pose generation without disrupting artist control.}
+        \resumeItem{Prototyped and integrated ML-assisted authoring pipelines into DCC tools (leveraging PyTorch and ONNX runtime), enabling automated asset tagging and procedural pose generation without disrupting artist control.}
       \resumeItemListEnd
 
     \resumeSubheading
       {Electronic Arts -- Maxis Studios}{2021 -- 2025}
       {Software Engineer -- Gameplay \& Animation}{Seattle, WA (Remote)}
       \resumeItemListStart
-        \resumeItem{Contributed to pre-production of \emph{Project Rene} (upcoming \emph{The Sims} title built in Unreal Engine 5).}
-        \resumeItem{Architected a multi-threaded asynchronous path-planning and navigation API in UE5/C++, enabling deterministic crowd routing and real-time obstacle avoidance within strict frame-time budgets ($<$1.5ms).}
-        \resumeItem{Implemented core locomotion and animation runtime systems in UE5 (motion-matching, distance matching, custom IK solvers), delivering responsive, fluid character controls for next-gen simulation gameplay.}
-        \resumeItem{Partnered directly with technical animators and gameplay designers to author in-editor tuning tools and visual debuggers, accelerating iteration cycles on character behaviors.}
+        \resumeItem{Architected a multi-threaded asynchronous path-planning and navigation API in UE5/C++ for \emph{Project Rene} (\emph{The Sims}), enabling deterministic crowd routing and real-time obstacle avoidance within strict frame budgets ($<$1.5ms).}
+        \resumeItem{Implemented core locomotion and runtime animation systems in UE5 (motion-matching, distance matching, custom IK solvers), delivering fluid, responsive character controls for next-gen simulation gameplay.}
+        \resumeItem{Partnered directly with technical animators and gameplay designers to author in-editor tuning tools and visual debuggers, accelerating iteration cycles and authoring loops for complex behavior trees.}
+        \resumeItem{Profiled and optimized runtime memory and frame budgets across character evaluation graphs and query sweeps, eliminating hitches during dense crowd simulation scenarios.}
       \resumeItemListEnd
 
     \resumeSubheading
@@ -141,32 +142,24 @@
       \resumeItemListEnd
 
   \resumeSubHeadingListEnd
-\vspace{-12pt}
+\vspace{-10pt}
 
 %-----------PROJECTS-----------
 \section{Projects}
-    \vspace{-5pt}
     \resumeSubHeadingListStart
       \resumeProjectHeading
-          {\textbf{Hoowan Game Engine} $|$ \emph{C++, OpenGL, EnTT, CMake}}{Nov. 2020}
+          {\textbf{Hoowan Game Engine} $|$ \emph{C++, OpenGL, EnTT, CMake} $|$ \href{https://github.com/juanbecerra0/Hoowan}{\underline{GitHub}}}{Nov. 2020}
           \resumeItemListStart
             \resumeItem{Engineered a custom C++ game engine featuring an OpenGL rendering submission pipeline, input event polling, and 2D collision detection and correction systems.}
             \resumeItem{Integrated an EnTT-based entity-component system (ECS) and constructed a companion desktop editor application for rapid scene composition and entity management.}
           \resumeItemListEnd
-          \vspace{-13pt}
       \resumeProjectHeading
-          {\textbf{BroncoDrome} $|$ \emph{Unreal Engine 4, C++, Blueprints}}{May 2021}
-          \resumeItemListStart
-            \resumeItem{Developed a 3rd-person vehicular combat game in UE4/C++ featuring custom arcade vehicle physics simulations, dynamic stat modifier pickups, and enemy AI navigation.}
-          \resumeItemListEnd
-          \vspace{-13pt}
-      \resumeProjectHeading
-          {\textbf{DoomSlop} $|$ \emph{Three.js, Web Audio API, Vite, JavaScript}}{Sep. 2026}
+          {\textbf{DoomSlop} $|$ \emph{Three.js, Web Audio API, Vite, JavaScript} $|$ \href{https://hoowan-dev.github.io/DoomSlop/}{\underline{Live Demo}} $|$ \href{https://github.com/hoowan-dev/DoomSlop}{\underline{GitHub}}}{Sep. 2026}
           \resumeItemListStart
             \resumeItem{Built a 3D browser first-person shooter featuring hitscan raycasting, synthesized Web Audio sound effects, custom canvas radar minimap, and automated CI/CD deployments via GitHub Pages.}
           \resumeItemListEnd
     \resumeSubHeadingListEnd
-\vspace{-12pt}
+\vspace{-10pt}
 
 %-----------TECHNICAL SKILLS-----------
 \section{Technical Skills}
@@ -175,18 +168,21 @@
      \textbf{Languages}{: C++ (Modern, Multi-threading), C\#, Python, Rust, GLSL/HLSL, Java, JavaScript, SQL} \\
      \textbf{Game Engines \& APIs}{: Unreal Engine 5 (Source, Motion Matching, GAS, Mass/Crowd), Unity, Godot, Vulkan, OpenGL} \\
      \textbf{Gameplay \& Systems}{: Locomotion \& Character Physics, Async Navigation/Pathfinding, Animation Runtime (IK, Motion-Matching), State Machines} \\
-     \textbf{Tools \& Tech-Art}{: Maya API, PySide/Qt, DCC Pipeline Automation, Plugin Development, In-Editor Debug Tooling} \\
-     \textbf{Infrastructure \& Tools}{: Perforce (P4), Git, Docker, JIRA, CMake, Visual Studio, Linux, AWS}
+     \textbf{Tools \& ML Pipelines}{: Maya API, PySide/Qt, DCC Pipeline Automation, Unreal Plugin Development, PyTorch/ONNX, In-Editor Tooling} \\
+     \textbf{Infrastructure \& Tools}{: Perforce (P4), Git, Docker, JIRA, CMake, Visual Studio, Linux, AWS, CI/CD}
     }}
  \end{itemize}
- \vspace{-16pt}
+ \vspace{-12pt}
 
 %-----------EDUCATION-----------
-\section{Education}
+\section{Education \& Continuing Studies}
   \resumeSubHeadingListStart
     \resumeSubheading
       {Boise State University}{2017 -- 2021}
       {Bachelor of Science in Computer Science}{Boise, ID}
+    \resumeSubheading
+      {University of Washington (Continuing Education)}{2026 -- Present}
+      {Graduate Coursework in Machine Learning \& Deep Learning (Non-Degree, In Progress)}{Seattle, WA}
   \resumeSubHeadingListEnd
 
 \end{document}
