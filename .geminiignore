@@ -1,0 +1,18 @@
+# Gemini Ignore File
+# Build outputs and intermediate TeX files
+out/
+*.pdf
+*.aux
+*.log
+*.out
+*.gz
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Git & OS artifacts
+.git/
+.DS_Store
+Thumbs.db
+

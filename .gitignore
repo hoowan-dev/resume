@@ -1,0 +1,17 @@
+# Build outputs
+out/
+
+# TeX auxiliary files
+*.aux
+*.log
+*.out
+*.gz
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
