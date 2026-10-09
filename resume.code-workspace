@@ -4,5 +4,18 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/.jj": true,
+			"**/.DS_Store": true,
+			"**/Thumbs.db": true,
+			"**/c:\\dev\\resume\\resume.aux": true,
+			"**/c:\\dev\\resume\\resume.log": true,
+			"**/c:\\dev\\resume\\resume.gz": true,
+			"**/c:\\dev\\resume\\resume.out": true
+		}
+	}
 }
