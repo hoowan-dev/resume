@@ -2,6 +2,8 @@
 
 Professional resume for **Juan Becerra** (Software Engineer & Game Developer), tailored for AAA game engineering, runtime gameplay systems, and tools/tech-art pipelines.
 
+👉 **[View / Download Resume (PDF)](out/resume.pdf)**
+
 Compiled to PDF using **[Tectonic](https://tectonic-typesetting.github.io/)** — a lightweight, modern TeX engine that handles native Unicode/XeTeX compilation and downloads required packages on the fly with zero configuration.
 
 ---
@@ -9,6 +11,7 @@ Compiled to PDF using **[Tectonic](https://tectonic-typesetting.github.io/)** �
 ## Profile Summary
 
 * **Role**: Software Engineer · Game Developer
+* **Resume (PDF)**: **[out/resume.pdf](out/resume.pdf)**
 * **Location**: Seattle, WA
 * **Website / Portfolio**: [hoowan.dev](https://hoowan.dev)
 * **GitHub**: [github.com/hoowan-dev](https://github.com/hoowan-dev)
@@ -20,18 +23,21 @@ Compiled to PDF using **[Tectonic](https://tectonic-typesetting.github.io/)** �
 ## Overview & Highlights
 
 * **AAA Experience**: 5+ years across **Electronic Arts** (Lifestyle, Maxis Studios) and **Lionbridge**.
-  * *EA Lifestyle*: Maya/Python stylization tools, Unreal Engine C++ trajectory data export plugins for motion matching, ML-assisted authoring pipelines.
-  * *EA Maxis Studios (Project Rene / The Sims)*: Multi-threaded async path-planning APIs (<1.5ms budget), motion-matching locomotion, distance matching, custom IK solvers, designer tuning tools.
+  * *EA Lifestyle*: Maya/Python stylization tools, Unreal Engine C++ trajectory data export plugins for motion matching, ML-assisted authoring pipelines (PyTorch/ONNX).
+  * *EA Maxis Studios (Project Rene / The Sims)*: Multi-threaded async path-planning APIs (<1.5ms budget), motion-matching locomotion, distance matching, custom IK solvers, runtime memory/frame optimizations, designer tuning tools.
   * *Lionbridge*: QA test leadership, technical repro pipelines, and engine diagnostics in JIRA.
 * **Featured Projects**:
   * **Hoowan Game Engine**: Custom C++ engine with OpenGL rendering submission pipeline, EnTT ECS, event polling, collision detection, and editor application.
-  * **BroncoDrome**: 3rd-person vehicular combat game in Unreal Engine 4 and C++ with custom physics and AI navigation.
-  * **DoomSlop**: 3D browser first-person shooter built in Three.js and Vite with Web Audio API sound synthesis and automated GitHub Pages CI/CD.
+  * **DoomSlop**: 3D browser first-person shooter built in Three.js and Vite with Web Audio API sound synthesis and automated GitHub Pages CI/CD ([Live Demo](https://hoowan-dev.github.io/DoomSlop/)).
+* **Education & Continuing Studies**:
+  * *Boise State University*: B.S. in Computer Science (2017 – 2021).
+  * *University of Washington (Continuing Education)*: Graduate Coursework in Machine Learning & Deep Learning (Non-Degree, In Progress, 2026 – Present).
 * **Core Competencies**:
-  * *Languages*: Modern C++, C#, Python, Rust, GLSL/HLSL, Java, JavaScript, SQL
+  * *Languages*: Modern C++ (Modern, Multi-threading), C#, Python, Rust, GLSL/HLSL, Java, JavaScript, SQL
   * *Engines & Graphics*: Unreal Engine 5 (Source, Motion Matching, GAS, Mass/Crowd), Unity, Godot, Vulkan, OpenGL
   * *Gameplay & Systems*: Locomotion & Character Physics, Async Navigation/Pathfinding, Animation Runtime (IK, Motion Matching), State Machines
-  * *Tools & Tech-Art*: Maya API, PySide/Qt, DCC Pipeline Automation, Plugin Development, In-Editor Debug Tooling
+  * *Tools & ML Pipelines*: Maya API, PySide/Qt, DCC Pipeline Automation, Unreal Plugin Development, PyTorch/ONNX, In-Editor Tooling
+  * *Infrastructure & Tools*: Perforce (P4), Git, Docker, JIRA, CMake, Visual Studio, Linux, AWS, CI/CD
 
 ---
 
@@ -93,8 +99,8 @@ Generated PDFs are always written directly into the `out/` directory to prevent 
 ```text
 ├── resume.tex              # Main LaTeX resume source (single-page, ATS-optimized)
 ├── build.ps1               # PowerShell build script (custom output name support)
-├── build.sh                # Bash / Unix build script
-├── out/                    # Output directory for compiled PDFs (ignored by git)
+├── out/resume.pdf          # Compiled PDF resume (tracked in git)
+├── out/                    # Build output directory (other build artifacts ignored)
 ├── GEMINI.md               # Context & guidelines for Gemini AI
 ├── README.md               # Repository documentation
 ├── .geminiignore           # Excluded patterns for Gemini AI
