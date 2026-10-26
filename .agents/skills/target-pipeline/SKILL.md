@@ -5,7 +5,7 @@ description: >-
   from job descriptions under targets/ctx/. Handles reading job descriptions,
   authoring a subtly tailored LaTeX resume in targets/src/res/<id>.tex based on resume.tex,
   compiling the PDF resume to targets/out/res/<id>.pdf via Tectonic, and generating
-  a tailored cover letter in targets/src/cl/<id>.md and targets/out/cl/<id>.pdf.
+  a tailored LaTeX cover letter in targets/src/cl/<id>.tex and targets/out/cl/<id>.pdf.
 ---
 
 # Target Application Pipeline (`targets/`)
@@ -19,7 +19,7 @@ targets/
 ├── ctx/            # Input: Job descriptions as Markdown files (<id>.md)
 ├── src/
 │   ├── res/        # Generated: Subtly tailored ATS-optimized LaTeX resumes (<id>.tex)
-│   └── cl/         # Generated: Tailored cover letters in Markdown (<id>.md)
+│   └── cl/         # Generated: Tailored cover letters in LaTeX (<id>.tex)
 └── out/
     ├── res/        # Output: Compiled PDF resumes (<id>.pdf)
     └── cl/         # Output: Compiled PDF cover letters (<id>.pdf)
@@ -68,8 +68,8 @@ Verify that:
 - Tectonic exits with code `0`.
 - `targets/out/res/<id>.pdf` exists and fits on 1 page.
 
-### 4. Generate Tailored Cover Letter (`targets/src/cl/<id>.md` & `targets/out/cl/<id>.pdf`)
-Generate an honest, compelling, role-specific cover letter grounded strictly in Juan Becerra's true profile:
+### 4. Generate Tailored Cover Letter (`targets/src/cl/<id>.tex` & `targets/out/cl/<id>.pdf`)
+Generate an honest, compelling, role-specific LaTeX cover letter grounded strictly in Juan Becerra's true profile:
 1. **Header & Addressee**:
    - Include Juan Becerra's contact information (Seattle, WA, phone, email, portfolio `hoowan.dev`, LinkedIn, GitHub).
    - Address the letter to the specific **Hiring Manager** if named in `targets/ctx/<id>.md` (e.g., `Dear Yen Feng,` or `Dear Sara Khurshid Uppal,`), or to the `<Department/Team> Hiring Team` if unnamed. Reference the exact **Role Title** and **Role ID**.
@@ -78,7 +78,7 @@ Generate an honest, compelling, role-specific cover letter grounded strictly in 
    - **Body Paragraphs**: Truthfully describe Juan's work at EA Lifestyle (Maya/Python tools, high-throughput UE C++ trajectory/pose/velocity data export plugin for motion-matching query databases, PyTorch/ONNX ML authoring pipelines) and EA Maxis Studios (UE5/C++ multi-threaded async path-planning/navigation API within <1.5ms budgets, locomotion/motion-matching systems, compute/memory profiling, and visual debuggers), plus Lionbridge QA leadership and University of Washington graduate ML/DL coursework—explaining how these engineering foundations transfer to the target team's problems.
    - **Closing**: Reiterate excitement to contribute in Kirkland/Seattle and thank the reader.
 3. **Output Files**:
-   - Write the Markdown source to `targets/src/cl/<id>.md`.
+   - Write the LaTeX source to `targets/src/cl/<id>.tex`.
    - Compile the matching typeset PDF version to `targets/out/cl/<id>.pdf` using [compile_cover_letter.ps1](./scripts/compile_cover_letter.ps1):
      ```powershell
      .\.agents\skills\target-pipeline\scripts\compile_cover_letter.ps1 -Target <id>

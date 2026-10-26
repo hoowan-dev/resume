@@ -5,15 +5,15 @@ This project compiles a professional LaTeX resume to PDF using **Tectonic** and 
 ## Architecture & File Structure
 
 - `resume.tex`: Main base LaTeX resume source file (customized based on the Jake Gutierrez template).
-- `build.ps1`: PowerShell build script compiling either root `resume.tex` into `out/` or targeted resumes under `targets/src/res/` into `targets/out/res/`.
+- `build.ps1`: PowerShell build script compiling either root `resume.tex` into `out/` or targeted resumes/cover letters under `targets/src/` into `targets/out/`.
 - `build.sh`: Bash build script for Unix / Git Bash environments supporting both root and `targets/` builds.
 - `out/`: Build output directory containing generated base PDFs (`out/resume.pdf`).
 - `targets/`: Targeted job application pipeline:
   - `targets/ctx/<id>.md`: Input job description Markdown files.
   - `targets/src/res/<id>.tex`: Generated ATS-optimized LaTeX resumes subtly tailored to each job description.
-  - `targets/src/cl/<id>.md`: Generated tailored cover letter Markdown source files.
+  - `targets/src/cl/<id>.tex`: Generated tailored cover letter LaTeX source files.
   - `targets/out/res/<id>.pdf`: Compiled PDF resumes generated from `targets/src/res/<id>.tex`.
-  - `targets/out/cl/<id>.pdf`: Compiled typeset PDF cover letters generated from `targets/src/cl/<id>.md`.
+  - `targets/out/cl/<id>.pdf`: Compiled typeset PDF cover letters generated from `targets/src/cl/<id>.tex`.
 - `.agents/skills/target-pipeline/`: Workspace skill defining the automated target resume & cover letter generation pipeline.
 - `resume.code-workspace`: VS Code workspace settings.
 
