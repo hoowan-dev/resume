@@ -1,7 +1,10 @@
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory = $true)]
-    [string]$Target,
+    [Parameter(Mandatory = $false)]
+    [string]$Target = "",
+
+    [Parameter()]
+    [switch]$AllTargets,
 
     [Parameter()]
     [string]$TexFile = ""
@@ -10,7 +13,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..\..\..")).Path
-$cleanName = [System.IO.Path]::GetFileNameWithoutExtension($Target)
+$clSrcDir = Join-Path $repoRoot "targets\src\cl"
 $clOutDir = Join-Path $repoRoot "targets\out\cl"
 
 if (-not (Test-Path $clOutDir)) {
@@ -34,29 +37,47 @@ if (-not $tectonic) {
     exit 1
 }
 
-if ([string]::IsNullOrWhiteSpace($TexFile)) {
-    $TexFile = Join-Path $clOutDir "$cleanName.tex"
+function Build-CoverLetterTex {
+    param(
+        [string]$TargetName,
+        [string]$CustomTexFile = ""
+    )
+    $cleanName = [System.IO.Path]::GetFileNameWithoutExtension($TargetName)
+    $resolvedTex = if (-not [string]::IsNullOrWhiteSpace($CustomTexFile)) {
+        $CustomTexFile
+    }
+    else {
+        Join-Path $clSrcDir "$cleanName.tex"
+    }
+
+    if (-not (Test-Path $resolvedTex)) {
+        Write-Error "Cover letter TeX file not found: $resolvedTex"
+        exit 1
+    }
+
+    Write-Host "Compiling cover letter $resolvedTex with Tectonic..." -ForegroundColor Cyan
+    & $tectonic -o $clOutDir $resolvedTex
+
+    if ($LASTEXITCODE -ne 0) {
+        Write-Error "Cover letter compilation failed with exit code $LASTEXITCODE"
+        exit $LASTEXITCODE
+    }
+
+    $outPdf = Join-Path $clOutDir "$cleanName.pdf"
+    Write-Host "Successfully generated cover letter PDF: $outPdf" -ForegroundColor Green
 }
 
-if (-not (Test-Path $TexFile)) {
-    Write-Error "Cover letter TeX file not found: $TexFile"
+if ($AllTargets) {
+    $texFiles = Get-ChildItem -Path $clSrcDir -Filter "*.tex"
+    foreach ($file in $texFiles) {
+        Build-CoverLetterTex -TargetName $file.BaseName
+    }
+    exit 0
+}
+
+if ([string]::IsNullOrWhiteSpace($Target)) {
+    Write-Error "Please provide -Target <id> or -AllTargets"
     exit 1
 }
 
-Write-Host "Compiling cover letter $TexFile with Tectonic..." -ForegroundColor Cyan
-& $tectonic -o $clOutDir $TexFile
-
-if ($LASTEXITCODE -ne 0) {
-    Write-Error "Cover letter compilation failed with exit code $LASTEXITCODE"
-    exit $LASTEXITCODE
-}
-
-# Remove intermediate .tex if it was staged in out/cl so out/cl stays clean with .md and .pdf
-$stagedTex = Join-Path $clOutDir "$cleanName.tex"
-if (Test-Path $stagedTex) {
-    Remove-Item -LiteralPath $stagedTex -Force
-}
-
-$outPdf = Join-Path $clOutDir "$cleanName.pdf"
-Write-Host "Successfully generated cover letter PDF: $outPdf" -ForegroundColor Green
-
+Build-CoverLetterTex -TargetName $Target -CustomTexFile $TexFile

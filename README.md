@@ -97,7 +97,7 @@ To install Tectonic manually if needed:
 
 #### Option 3: VS Code Interactive Build
 
-1. Open `resume.tex` (or any `targets/src/res/<id>.tex`) in VS Code.
+1. Open `resume.tex` (or any `targets/src/res/<id>.tex` / `targets/src/cl/<id>.tex`) in VS Code.
 2. Press <kbd>F5</kbd> to compile instantly via the **LaTeX Instant Runner** extension.
 
 ---
@@ -110,7 +110,7 @@ The `targets/` pipeline generates role-specific, ATS-optimized resumes and cover
 2. Run the **`target-pipeline`** skill (located in `.agents/skills/target-pipeline/SKILL.md`), which:
    - Generates a subtly tailored, ATS-optimized LaTeX resume at `targets/src/res/<id>.tex`.
    - Compiles the PDF resume to `targets/out/res/<id>.pdf`.
-   - Generates a tailored cover letter at `targets/src/cl/<id>.md` and compiles `targets/out/cl/<id>.pdf`.
+   - Generates a tailored LaTeX cover letter at `targets/src/cl/<id>.tex` and compiles `targets/out/cl/<id>.pdf`.
 
 ---
 
@@ -125,7 +125,7 @@ The `targets/` pipeline generates role-specific, ATS-optimized resumes and cover
 │   ├── ctx/                          # Input job descriptions (<id>.md)
 │   ├── src/
 │   │   ├── res/                      # Tailored ATS-optimized LaTeX resumes (<id>.tex)
-│   │   └── cl/                       # Tailored Markdown cover letters (<id>.md)
+│   │   └── cl/                       # Tailored LaTeX cover letters (<id>.tex)
 │   └── out/
 │       ├── res/                      # Compiled target PDF resumes (<id>.pdf)
 │       └── cl/                       # Compiled target PDF cover letters (<id>.pdf)
