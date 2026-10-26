@@ -71,9 +71,13 @@ To install Tectonic manually if needed:
 
 # Custom output filename -> out/Juan_Becerra_Resume.pdf
 .\build.ps1 Juan_Becerra_Resume
-```
 
-*(Note: The `.pdf` extension is optional; `.\build.ps1 Juan_Becerra_Resume.pdf` works identically).*
+# Target pipeline build -> targets/out/res/<id>.pdf
+.\build.ps1 -Target 10_26_26_1
+
+# Build all targets in targets/src/res/
+.\build.ps1 -AllTargets
+```
 
 #### Option 2: Bash / Git Bash (Linux / macOS / Windows)
 
@@ -83,29 +87,54 @@ To install Tectonic manually if needed:
 
 # Custom output filename -> out/Juan_Becerra_Resume.pdf
 ./build.sh Juan_Becerra_Resume
+
+# Target pipeline build -> targets/out/res/<id>.pdf
+./build.sh --target 10_26_26_1
+
+# Build all targets in targets/src/res/
+./build.sh --all-targets
 ```
 
 #### Option 3: VS Code Interactive Build
 
-1. Open `resume.tex` in VS Code.
+1. Open `resume.tex` (or any `targets/src/res/<id>.tex`) in VS Code.
 2. Press <kbd>F5</kbd> to compile instantly via the **LaTeX Instant Runner** extension.
 
-Generated PDFs are always written directly into the `out/` directory to prevent root clutter.
+---
+
+## Target Application Pipeline (`targets/`)
+
+The `targets/` pipeline generates role-specific, ATS-optimized resumes and cover letters from Markdown job descriptions:
+
+1. Place a job description in `targets/ctx/<id>.md`.
+2. Run the **`target-pipeline`** skill (located in `.agents/skills/target-pipeline/SKILL.md`), which:
+   - Generates a subtly tailored, ATS-optimized LaTeX resume at `targets/src/res/<id>.tex`.
+   - Compiles the PDF resume to `targets/out/res/<id>.pdf`.
+   - Generates a tailored cover letter at `targets/src/cl/<id>.md` and compiles `targets/out/cl/<id>.pdf`.
 
 ---
 
 ## Project Structure
 
 ```text
-├── resume.tex              # Main LaTeX resume source (single-page, ATS-optimized)
-├── build.ps1               # PowerShell build script (custom output name support)
-├── out/resume.pdf          # Compiled PDF resume (tracked in git)
-├── out/                    # Build output directory (other build artifacts ignored)
-├── GEMINI.md               # Context & guidelines for Gemini AI
-├── README.md               # Repository documentation
-├── .geminiignore           # Excluded patterns for Gemini AI
-├── .gitignore              # Git ignore rules
-└── resume.code-workspace   # VS Code workspace settings
+├── resume.tex                        # Main base LaTeX resume source (single-page, ATS-optimized)
+├── build.ps1                         # PowerShell build script (root & target pipeline support)
+├── build.sh                          # Bash build script (root & target pipeline support)
+├── out/resume.pdf                    # Compiled base PDF resume (tracked in git)
+├── targets/
+│   ├── ctx/                          # Input job descriptions (<id>.md)
+│   ├── src/
+│   │   ├── res/                      # Tailored ATS-optimized LaTeX resumes (<id>.tex)
+│   │   └── cl/                       # Tailored Markdown cover letters (<id>.md)
+│   └── out/
+│       ├── res/                      # Compiled target PDF resumes (<id>.pdf)
+│       └── cl/                       # Compiled target PDF cover letters (<id>.pdf)
+├── .agents/skills/target-pipeline/   # Workspace skill for the target application pipeline
+├── GEMINI.md                         # Context & guidelines for Gemini AI
+├── README.md                         # Repository documentation
+├── .geminiignore                     # Excluded patterns for Gemini AI
+├── .gitignore                        # Git ignore rules
+└── resume.code-workspace             # VS Code workspace settings
 ```
 
 ---
