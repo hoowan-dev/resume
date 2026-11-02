@@ -23,6 +23,7 @@ Each entry reads: **Skill**: evidence. *Keywords:* matching wording from target 
 - **GLSL / HLSL**: vertex and fragment shaders in Heightmap Terrain (WebGL). *Keywords:* shaders
 - **ShaderLab / Cg**: Terrain Engine (Unity); Udemy course on Unity shader development
 - **Rust**
+- **Lua**: confirmed by Juan. *Keywords:* game scripting, tools and editor extensions
 
 ## 2. Engines, Graphics & Real-Time 3D
 
@@ -40,6 +41,9 @@ Each entry reads: **Skill**: evidence. *Keywords:* matching wording from target 
 - **Web Audio API**: synthesized sound effects (DoomSlop)
 - **Godot**
 - **Vulkan**: Udemy course "Vulkan API with C++". *Keywords:* graphics APIs
+- **Unreal Chaos physics**: confirmed by Juan. *Keywords:* Unreal Engine (Chaos), physics middleware
+- **Unity DOTS / Unity Physics**: confirmed by Juan. *Keywords:* Unity (DOTS/Physics), data-oriented design
+- **GPU compute (CUDA / compute shaders)**: confirmed by Juan. *Keywords:* GPU compute, compute shaders
 - **Direct3D**. *Keywords:* graphics APIs
 
 ## 3. Engine & Systems Architecture
@@ -47,6 +51,7 @@ Each entry reads: **Skill**: evidence. *Keywords:* matching wording from target 
 - **Multi-threaded / async API design**: async path-planning and navigation API in UE5/C++ (Maxis). *Keywords:* concurrency, systems design
 - **Event systems**: animation event systems and navigation events (Maxis); input and event handling (Hoowan)
 - **Entity-component systems (ECS)**: EnTT integration (Hoowan). *Keywords:* data-oriented design
+- **Data-oriented design & memory management**: confirmed by Juan. *Keywords:* data-oriented design, cache-friendly data structures, memory management, frame/memory budgeting
 - **Custom engine development**: Hoowan Game Engine, with 2D rendering API, input polling, and collision. *Keywords:* engine architecture
 - **Desktop applications**: Hoowan companion editor; Resume Sorter (Java GUI). *Keywords:* cross-platform desktop software
 - **Systems programming**: Smash Linux shell, with piping, redirection, multithreading, and command history; memory-leak checks with Valgrind
@@ -63,6 +68,8 @@ Each entry reads: **Skill**: evidence. *Keywords:* matching wording from target 
 - **Combat mechanics**: hitscan raycasting, boss encounters (DoomSlop); vehicle combat and power-ups (BroncoDrome); melee action RPG (Chasm)
 - **Game AI**: AI opponents (BroncoDrome); Suspicion board-game agent; Grocery bagging agent
 - **Physics & collision**: 2D collision detection and correction (Hoowan); rolling physics (3D Marble Game)
+- **Collision algorithms (broad-phase / narrow-phase, GJK, SAT, continuous collision detection)**: confirmed by Juan. *Keywords:* collision detection, time of impact, sweep-and-prune, BVH
+- **Physics integrators & constraint solvers (semi-implicit Euler, RK, numerical stability)**: confirmed by Juan. *Keywords:* integration schemes, constraint solvers, error control
 - **Input systems**: mouse-and-keyboard event polling (Hoowan)
 - **HUD / UI**: canvas radar minimap and damage indicators (DoomSlop)
 - **Level & puzzle design**: dungeon puzzles (Chasm); sequential levels (3D Marble Game)
@@ -70,12 +77,14 @@ Each entry reads: **Skill**: evidence. *Keywords:* matching wording from target 
 ## 5. Performance & Engineering Quality
 
 - **Profiling & benchmarking**: runtime memory, compute, and frame budgets (Maxis). *Keywords:* performance
+- **Profilers & GPU debuggers (VTune, PIX, Nsight, RenderDoc)**: confirmed by Juan. *Keywords:* profiling/debugging
 - **Frame-budget engineering**: navigation API held under 1.5ms (Maxis). *Keywords:* performance, reliability
 - **Hitch elimination**: character evaluation graphs and spatial query sweeps (Maxis)
 - **Reliability & maintainability tradeoffs**: managing technical risk and long-term maintainability in a shared codebase (Maxis). *Keywords:* pragmatic engineering judgment
 - **Code reviews & pull requests**: handled PRs and code reviews (TurnUp). *Keywords:* code reviews
 - **Design reviews**: confirmed by Juan. *Keywords:* design reviews, technical discussions
 - **Unit testing**: unit testing (TurnUp); taught test-driven development (BSU Learning Assistant). *Keywords:* testing, engineering quality
+- **Test suites & crash/regression fixing**: confirmed by Juan. *Keywords:* test suites, golden scenarios, verification and validation, crashes and regressions
 - **QA methods: combinatorial, tree, regression, ad hoc, functional, localization**: Lionbridge. *Keywords:* testing
 - **Technical repro & engine diagnostics**: bug reports enriched with engine and gameplay insight, triaged in JIRA (Lionbridge)
 - **Memory-leak debugging**: Valgrind (Smash)
@@ -158,6 +167,7 @@ Each entry reads: **Skill**: evidence. *Keywords:* matching wording from target 
 - AAA game development: Electronic Arts (Maxis Studios, Lifestyle), Lionbridge
 - Life simulation: *Project Rene* / *The Sims*
 - Live-service multiplayer titles
+- Shipped a title: confirmed by Juan (add which title and your role). *Keywords:* shipped a title, AA/AAA
 - Character animation and locomotion
 - Real-time 3D, both native and in the browser
 - Creator / developer tooling
