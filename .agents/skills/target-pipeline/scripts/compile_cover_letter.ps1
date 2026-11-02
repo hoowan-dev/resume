@@ -37,17 +37,35 @@ if (-not $tectonic) {
     exit 1
 }
 
+function Resolve-TargetClBaseName {
+    param(
+        [string]$TargetName
+    )
+    $cleanName = [System.IO.Path]::GetFileNameWithoutExtension($TargetName)
+    $directPath = Join-Path $clSrcDir "$cleanName.tex"
+    if (Test-Path $directPath) {
+        return $cleanName
+    }
+    if ($cleanName -match '^(.+)_(?:ctx|cl|res)_(\d+)$') {
+        return "$($Matches[1])_cl_$($Matches[2])"
+    }
+    if ($cleanName -match '^(.+)_(\d+)$') {
+        return "$($Matches[1])_cl_$($Matches[2])"
+    }
+    return $cleanName
+}
+
 function Build-CoverLetterTex {
     param(
         [string]$TargetName,
         [string]$CustomTexFile = ""
     )
-    $cleanName = [System.IO.Path]::GetFileNameWithoutExtension($TargetName)
+    $resolvedBase = Resolve-TargetClBaseName -TargetName $TargetName
     $resolvedTex = if (-not [string]::IsNullOrWhiteSpace($CustomTexFile)) {
         $CustomTexFile
     }
     else {
-        Join-Path $clSrcDir "$cleanName.tex"
+        Join-Path $clSrcDir "$resolvedBase.tex"
     }
 
     if (-not (Test-Path $resolvedTex)) {
@@ -63,7 +81,7 @@ function Build-CoverLetterTex {
         exit $LASTEXITCODE
     }
 
-    $outPdf = Join-Path $clOutDir "$cleanName.pdf"
+    $outPdf = Join-Path $clOutDir "$resolvedBase.pdf"
     Write-Host "Successfully generated cover letter PDF: $outPdf" -ForegroundColor Green
 }
 

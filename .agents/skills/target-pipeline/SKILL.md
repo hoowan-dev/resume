@@ -2,38 +2,41 @@
 name: target-pipeline
 description: >-
   Use this skill when generating tailored, ATS-optimized resumes and cover letters
-  from job descriptions under targets/ctx/. Handles reading job descriptions,
-  authoring a subtly tailored LaTeX resume in targets/src/res/<id>.tex based on resume.tex,
-  compiling the PDF resume to targets/out/res/<id>.pdf via Tectonic, and generating
-  a tailored LaTeX cover letter in targets/src/cl/<id>.tex and targets/out/cl/<id>.pdf.
+  from job descriptions under targets/ctx/. Handles reading job descriptions in
+  targets/ctx/<MM_DD_YY>_ctx_<Y>.md, authoring a subtly tailored LaTeX resume in
+  targets/src/res/<MM_DD_YY>_res_<Y>.tex based on resume.tex, compiling the PDF resume
+  to targets/out/res/<MM_DD_YY>_res_<Y>.pdf via Tectonic, and generating a tailored
+  LaTeX cover letter in targets/src/cl/<MM_DD_YY>_cl_<Y>.tex and targets/out/cl/<MM_DD_YY>_cl_<Y>.pdf.
 ---
 
 # Target Application Pipeline (`targets/`)
 
 This skill executes the end-to-end job application pipeline under `targets/` for one or more job description files placed in `targets/ctx/`.
 
-## Pipeline Directory Layout
+## Pipeline Directory Layout & Naming Convention
+
+All files under `targets/` follow the convention `<MM_DD_YY>_<X>_<Y>`, where `<X>` is `ctx`, `res`, or `cl`, and `<Y>` is the target number:
 
 ```text
 targets/
-├── ctx/            # Input: Job descriptions as Markdown files (<id>.md)
+├── ctx/            # Input: Job descriptions as Markdown files (<MM_DD_YY>_ctx_<Y>.md)
 ├── src/
-│   ├── res/        # Generated: Subtly tailored ATS-optimized LaTeX resumes (<id>.tex)
-│   └── cl/         # Generated: Tailored cover letters in LaTeX (<id>.tex)
+│   ├── res/        # Generated: Subtly tailored LaTeX resumes (<MM_DD_YY>_res_<Y>.tex)
+│   └── cl/         # Generated: Tailored cover letters in LaTeX (<MM_DD_YY>_cl_<Y>.tex)
 └── out/
-    ├── res/        # Output: Compiled PDF resumes (<id>.pdf)
-    └── cl/         # Output: Compiled PDF cover letters (<id>.pdf)
+    ├── res/        # Output: Compiled PDF resumes (<MM_DD_YY>_res_<Y>.pdf)
+    └── cl/         # Output: Compiled PDF cover letters (<MM_DD_YY>_cl_<Y>.pdf)
 ```
 
 ---
 
 ## Step-by-Step Workflow
 
-For each target `<id>.md` in `targets/ctx/<id>.md`:
+For each target `<MM_DD_YY>_ctx_<Y>.md` in `targets/ctx/`:
 
 ### 1. Analyze Profile & Job Context
 1. Read `resume.tex` and `README.md` at the repository root to load the candidate's base profile, experience, projects, education, and skills.
-2. Read `targets/ctx/<id>.md` to extract:
+2. Read `targets/ctx/<MM_DD_YY>_ctx_<Y>.md` to extract:
    - **Role Title & Role ID**
    - **Company, Studio/Department, and Team Mission**
    - **Location & Work Model**
@@ -41,45 +44,41 @@ For each target `<id>.md` in `targets/ctx/<id>.md`:
    - **Core Responsibilities & Qualifications**
    - **Relevant Overlapping Keywords** (languages, tools, systems, and workflows that genuinely overlap with `resume.tex`)
 
-### 2. Generate Subtly Tailored LaTeX Resume (`targets/src/res/<id>.tex`)
-Create `targets/src/res/<id>.tex` modeled directly on `resume.tex` while adhering to these strict truthfulness and formatting rules:
+### 2. Generate Subtly Tailored LaTeX Resume (`targets/src/res/<MM_DD_YY>_res_<Y>.tex`)
+Create `targets/src/res/<MM_DD_YY>_res_<Y>.tex` modeled on `resume.tex` (and matching the concise style of `10_26_26_res_3.tex`) while adhering to these strict truthfulness and formatting rules:
 - **Strict Truthfulness & Subtlety Rule (CRITICAL)**:
   - Changes from the original `resume.tex` **must be subtle**.
   - **NEVER lie, fabricate, or exaggerate experience.** Do not claim the candidate used languages, databases, or frameworks in a role unless stated in `resume.tex`.
   - **NEVER add skills or technologies** to `Technical Skills` that are not already in `resume.tex` / `README.md`.
   - **Preserve actual job titles and project names** (`Software Engineer -- Tools \& Tech-Art`, `Software Engineer -- Gameplay \& Animation`, `Senior Games Test Engineer`, `Hoowan Game Engine`, `DoomSlop`).
 - **How to Tailor Subtly for ATS**:
-  - **Header Subtitle**: Keep close to `Software Engineer -- Gameplay, Animation \& Systems` (e.g., adjusting word order or subtly highlighting `Systems, Tools \& Gameplay` or `Systems, ML Pipelines \& Gameplay` when relevant).
-  - **Bullet Reordering & Slight Emphasis**: Reorder the existing bullets within each role so the accomplishment most relevant to the target position appears first, and make only slight, truthful wording refinements to highlight transferable aspects (e.g., data export to query databases, multi-threaded asynchronous APIs, memory/compute profiling, PyTorch/ONNX pipeline integration, or cross-studio Python tooling).
-  - **Technical Skills Ordering**: Keep the exact skills from `resume.tex`, but reorder categories and items within each list so the candidate's existing skills that match the job description (e.g., `Python, SQL, Rust, C++` or `C++, Java, Python, SQL`) appear first.
+  - **Header Subtitle**: Keep close to `Software Engineer -- Gameplay, Animation \& Tools` or `Software Engineer -- Gameplay, Animation \& Systems`.
+  - **Bullet Reordering & Slight Emphasis**: Reorder the existing bullets within each role so the accomplishment most relevant to the target position appears first, and make only slight, truthful wording refinements.
+  - **Technical Skills Ordering**: Keep the exact skills from `resume.tex` on compact single lines per category, reordering categories and items so matching skills appear first.
 - **Engine & Single-Page Fit**:
   - Preserve the exact preamble, margins, custom commands, and `\ifdefined\pdfgentounicode ... \fi` guard required for Tectonic (XeTeX).
   - Ensure the compiled document fits cleanly on **1 page**.
 
-### 3. Compile Resume PDF (`targets/out/res/<id>.pdf`)
-Run the root build script to compile `targets/src/res/<id>.tex` into `targets/out/res/<id>.pdf`:
+### 3. Compile Resume PDF (`targets/out/res/<MM_DD_YY>_res_<Y>.pdf`)
+Run the root build script to compile `targets/src/res/<MM_DD_YY>_res_<Y>.tex` into `targets/out/res/<MM_DD_YY>_res_<Y>.pdf`:
 
 ```powershell
-.\build.ps1 -Target <id>
+.\build.ps1 -Target <MM_DD_YY>_ctx_<Y>
 ```
 *(Or compile all targets at once with `.\build.ps1 -AllTargets`)*.
 
 Verify that:
 - Tectonic exits with code `0`.
-- `targets/out/res/<id>.pdf` exists and fits on 1 page.
+- `targets/out/res/<MM_DD_YY>_res_<Y>.pdf` exists and fits on 1 page.
 
-### 4. Generate Tailored Cover Letter (`targets/src/cl/<id>.tex` & `targets/out/cl/<id>.pdf`)
-Generate an honest, compelling, role-specific LaTeX cover letter grounded strictly in Juan Becerra's true profile:
+### 4. Generate Tailored Cover Letter (`targets/src/cl/<MM_DD_YY>_cl_<Y>.tex` & `targets/out/cl/<MM_DD_YY>_cl_<Y>.pdf`)
+Generate an honest, compelling, role-specific LaTeX cover letter grounded strictly in Juan Becerra's true profile (matching the style and formatting of `targets/src/cl/10_26_26_cl_3.tex`, without em-dashes):
 1. **Header & Addressee**:
    - Include Juan Becerra's contact information (Seattle, WA, phone, email, portfolio `hoowan.dev`, LinkedIn, GitHub).
-   - Address the letter to the specific **Hiring Manager** if named in `targets/ctx/<id>.md`, or to the `<Department/Team> Hiring Team` if unnamed. Reference the exact **Role Title** and **Role ID**.
-2. **Narrative Structure**:
-   - **Opening**: Express enthusiasm for the role and team mission, highlighting current tenure at Electronic Arts (EA Lifestyle in Kirkland, WA & EA Maxis Studios).
-   - **Body Paragraphs**: Truthfully describe Juan's work at EA Lifestyle (Maya/Python tools, high-throughput UE C++ trajectory/pose/velocity data export plugin for motion-matching query databases, PyTorch/ONNX ML authoring pipelines) and EA Maxis Studios (UE5/C++ multi-threaded async path-planning/navigation API within <1.5ms budgets, locomotion/motion-matching systems, compute/memory profiling, and visual debuggers), plus Lionbridge QA leadership and University of Washington graduate ML/DL coursework—explaining how these engineering foundations transfer to the target team's problems.
-   - **Closing**: Reiterate excitement to contribute in Kirkland/Seattle and thank the reader.
-3. **Output Files**:
-   - Write the LaTeX source to `targets/src/cl/<id>.tex`.
-   - Compile the matching typeset PDF version to `targets/out/cl/<id>.pdf` using [compile_cover_letter.ps1](./scripts/compile_cover_letter.ps1):
+   - Address the letter to the specific **Hiring Manager** if named in `targets/ctx/<MM_DD_YY>_ctx_<Y>.md`, or to the `<Company/Studio> Hiring Team` if unnamed. Reference the exact **Role Title** and **Role ID** (if present).
+2. **Output Files**:
+   - Write the LaTeX source to `targets/src/cl/<MM_DD_YY>_cl_<Y>.tex`.
+   - Compile the matching typeset PDF version to `targets/out/cl/<MM_DD_YY>_cl_<Y>.pdf` using [compile_cover_letter.ps1](./scripts/compile_cover_letter.ps1):
      ```powershell
-     .\.agents\skills\target-pipeline\scripts\compile_cover_letter.ps1 -Target <id>
+     .\.agents\skills\target-pipeline\scripts\compile_cover_letter.ps1 -Target <MM_DD_YY>_ctx_<Y>
      ```

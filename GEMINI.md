@@ -8,18 +8,18 @@ This project compiles a professional LaTeX resume to PDF using **Tectonic** and 
 - `build.ps1`: PowerShell build script compiling either root `resume.tex` into `out/` or targeted resumes/cover letters under `targets/src/` into `targets/out/`.
 - `build.sh`: Bash build script for Unix / Git Bash environments supporting both root and `targets/` builds.
 - `out/`: Build output directory containing generated base PDFs (`out/resume.pdf`).
-- `targets/`: Targeted job application pipeline:
-  - `targets/ctx/<id>.md`: Input job description Markdown files.
-  - `targets/src/res/<id>.tex`: Generated ATS-optimized LaTeX resumes subtly tailored to each job description.
-  - `targets/src/cl/<id>.tex`: Generated tailored cover letter LaTeX source files.
-  - `targets/out/res/<id>.pdf`: Compiled PDF resumes generated from `targets/src/res/<id>.tex`.
-  - `targets/out/cl/<id>.pdf`: Compiled typeset PDF cover letters generated from `targets/src/cl/<id>.tex`.
+- `targets/`: Targeted job application pipeline (files follow `<MM_DD_YY>_<X>_<Y>` where `<X>` is `ctx`, `res`, or `cl` and `<Y>` is the target number):
+  - `targets/ctx/<MM_DD_YY>_ctx_<Y>.md`: Input job description Markdown files.
+  - `targets/src/res/<MM_DD_YY>_res_<Y>.tex`: Generated ATS-optimized LaTeX resumes subtly tailored to each job description.
+  - `targets/src/cl/<MM_DD_YY>_cl_<Y>.tex`: Generated tailored cover letter LaTeX source files.
+  - `targets/out/res/<MM_DD_YY>_res_<Y>.pdf`: Compiled PDF resumes generated from `targets/src/res/<MM_DD_YY>_res_<Y>.tex`.
+  - `targets/out/cl/<MM_DD_YY>_cl_<Y>.pdf`: Compiled typeset PDF cover letters generated from `targets/src/cl/<MM_DD_YY>_cl_<Y>.tex`.
 - `.agents/skills/target-pipeline/`: Workspace skill defining the automated target resume & cover letter generation pipeline.
 - `resume.code-workspace`: VS Code workspace settings.
 
 ## Target Tailoring Rules
 
-- **Subtle & Honest Modifications Only**: When creating unique resumes in `targets/src/res/<id>.tex`, changes from `resume.tex` must be subtle—slightly emphasizing and reordering the candidate's existing experience and skills to align with the target position without fabricating experience, altering actual job titles/projects, or adding unverified technologies.
+- **Subtle & Honest Modifications Only**: When creating unique resumes in `targets/src/res/<MM_DD_YY>_res_<Y>.tex`, changes from `resume.tex` must be subtle—slightly emphasizing and reordering the candidate's existing experience and skills to align with the target position without fabricating experience, altering actual job titles/projects, or adding unverified technologies.
 
 ## Build and Run Instructions
 
@@ -32,8 +32,8 @@ This project compiles a professional LaTeX resume to PDF using **Tectonic** and 
   # Compile base resume to custom output name (e.g., out/Juan_Becerra_Resume.pdf)
   .\build.ps1 Juan_Becerra_Resume
 
-  # Compile a specific target resume (targets/src/res/<id>.tex -> targets/out/res/<id>.pdf)
-  .\build.ps1 -Target 10_26_26_1
+  # Compile a specific target resume (targets/src/res/10_26_26_res_1.tex -> targets/out/res/10_26_26_res_1.pdf)
+  .\build.ps1 -Target 10_26_26_ctx_1
 
   # Compile all target resumes in targets/src/res/
   .\build.ps1 -AllTargets
@@ -47,8 +47,8 @@ This project compiles a professional LaTeX resume to PDF using **Tectonic** and 
   # Compile base resume to custom output name
   ./build.sh Juan_Becerra_Resume
 
-  # Compile a specific target resume (targets/src/res/<id>.tex -> targets/out/res/<id>.pdf)
-  ./build.sh --target 10_26_26_1
+  # Compile a specific target resume (targets/src/res/10_26_26_res_1.tex -> targets/out/res/10_26_26_res_1.pdf)
+  ./build.sh --target 10_26_26_ctx_1
 
   # Compile all target resumes in targets/src/res/
   ./build.sh --all-targets

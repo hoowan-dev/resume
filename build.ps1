@@ -38,12 +38,30 @@ if (-not $tectonic) {
 $targetsTexDir = Join-Path $scriptDir "targets\src\res"
 $targetsResDir = Join-Path $scriptDir "targets\out\res"
 
-function Build-TargetTex {
+function Resolve-TargetResBaseName {
     param(
         [string]$TargetName
     )
     $cleanName = [System.IO.Path]::GetFileNameWithoutExtension($TargetName)
-    $texPath = Join-Path $targetsTexDir "$cleanName.tex"
+    $directPath = Join-Path $targetsTexDir "$cleanName.tex"
+    if (Test-Path $directPath) {
+        return $cleanName
+    }
+    if ($cleanName -match '^(.+)_(?:ctx|cl|res)_(\d+)$') {
+        return "$($Matches[1])_res_$($Matches[2])"
+    }
+    if ($cleanName -match '^(.+)_(\d+)$') {
+        return "$($Matches[1])_res_$($Matches[2])"
+    }
+    return $cleanName
+}
+
+function Build-TargetTex {
+    param(
+        [string]$TargetName
+    )
+    $resolvedBase = Resolve-TargetResBaseName -TargetName $TargetName
+    $texPath = Join-Path $targetsTexDir "$resolvedBase.tex"
     if (-not (Test-Path $texPath)) {
         Write-Error "Target TeX file not found: $texPath"
         exit 1
@@ -60,7 +78,7 @@ function Build-TargetTex {
         exit $LASTEXITCODE
     }
 
-    $generatedPdf = Join-Path $targetsResDir "$cleanName.pdf"
+    $generatedPdf = Join-Path $targetsResDir "$resolvedBase.pdf"
     Write-Host "Successfully generated target resume: $generatedPdf" -ForegroundColor Green
 }
 
@@ -87,10 +105,10 @@ if (-not [string]::IsNullOrWhiteSpace($Target)) {
     exit 0
 }
 
-$candidateTargetName = [System.IO.Path]::GetFileNameWithoutExtension($OutputName)
-$candidateTargetTex = Join-Path $targetsTexDir "$candidateTargetName.tex"
+$candidateResolved = Resolve-TargetResBaseName -TargetName $OutputName
+$candidateTargetTex = Join-Path $targetsTexDir "$candidateResolved.tex"
 if ($OutputName -ne "resume.pdf" -and (Test-Path $candidateTargetTex)) {
-    Build-TargetTex -TargetName $candidateTargetName
+    Build-TargetTex -TargetName $candidateResolved
     exit 0
 }
 
