@@ -1,6 +1,7 @@
 # Build outputs
 out/*
 !out/resume.pdf
+targets/out/
 
 # TeX auxiliary files
 *.aux
