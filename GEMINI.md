@@ -9,7 +9,8 @@ This project compiles a professional LaTeX resume to PDF using **Tectonic** and 
 - `build.sh`: Bash build script for Unix / Git Bash environments supporting both root and `targets/` builds.
 - `out/`: Build output directory containing generated base PDFs (`out/resume.pdf`).
 - `targets/`: Targeted job application pipeline (files follow `<MM_DD_YY>_<X>_<Y>` where `<X>` is `ctx`, `res`, or `cl` and `<Y>` is the target number):
-  - `targets/ctx/<MM_DD_YY>_ctx_<Y>.md`: Input job description Markdown files.
+  - `targets/ctx/pos/<MM_DD_YY>_ctx_<Y>.md`: Input job description Markdown files.
+  - `targets/ctx/cv/cv.md`: Master skills inventory with evidence for each skill; used as context for every tailored resume and cover letter.
   - `targets/src/res/<MM_DD_YY>_res_<Y>.tex`: Generated ATS-optimized LaTeX resumes subtly tailored to each job description.
   - `targets/src/cl/<MM_DD_YY>_cl_<Y>.tex`: Generated tailored cover letter LaTeX source files.
   - `targets/out/res/<MM_DD_YY>_res_<Y>.pdf`: Compiled PDF resumes generated from `targets/src/res/<MM_DD_YY>_res_<Y>.tex`.
@@ -19,7 +20,7 @@ This project compiles a professional LaTeX resume to PDF using **Tectonic** and 
 
 ## Target Tailoring Rules
 
-- **Subtle & Honest Modifications Only**: When creating unique resumes in `targets/src/res/<MM_DD_YY>_res_<Y>.tex`, changes from `resume.tex` must be subtle—slightly emphasizing and reordering the candidate's existing experience and skills to align with the target position without fabricating experience, altering actual job titles/projects, or adding unverified technologies.
+- **Subtle & Honest Modifications Only**: When creating unique resumes in `targets/src/res/<MM_DD_YY>_res_<Y>.tex`, changes from `resume.tex` must be subtle—slightly emphasizing and reordering the candidate's existing experience and skills to align with the target position without fabricating experience, altering actual job titles/projects, or adding unverified technologies. Skills may come from `resume.tex` or the main sections of `targets/ctx/cv/cv.md`; never use its `Confirm Before Claiming` section, and never tie a "confirmed by Juan" skill to a specific role or project.
 
 ## Build and Run Instructions
 
