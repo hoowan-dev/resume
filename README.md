@@ -106,7 +106,7 @@ To install Tectonic manually if needed:
 
 The `targets/` pipeline generates role-specific, ATS-optimized resumes and cover letters from Markdown job descriptions using the naming convention `<MM_DD_YY>_<X>_<Y>` (where `<X>` is `ctx`, `res`, or `cl`, and `<Y>` is the target number):
 
-1. Place a job description in `targets/ctx/<MM_DD_YY>_ctx_<Y>.md`.
+1. Place a job description in `targets/ctx/pos/<MM_DD_YY>_ctx_<Y>.md`. The skills inventory in `targets/ctx/cv/cv.md` is used as context for every target.
 2. Run the **`target-pipeline`** skill (located in `.agents/skills/target-pipeline/SKILL.md`), which:
    - Generates a subtly tailored, ATS-optimized LaTeX resume at `targets/src/res/<MM_DD_YY>_res_<Y>.tex`.
    - Compiles the PDF resume to `targets/out/res/<MM_DD_YY>_res_<Y>.pdf`.
@@ -122,7 +122,9 @@ The `targets/` pipeline generates role-specific, ATS-optimized resumes and cover
 ├── build.sh                          # Bash build script (root & target pipeline support)
 ├── out/resume.pdf                    # Compiled base PDF resume (tracked in git)
 ├── targets/
-│   ├── ctx/                          # Input job descriptions (<MM_DD_YY>_ctx_<Y>.md)
+│   ├── ctx/
+│   │   ├── pos/                      # Input job descriptions (<MM_DD_YY>_ctx_<Y>.md)
+│   │   └── cv/cv.md                  # Master skills inventory with evidence
 │   ├── src/
 │   │   ├── res/                      # Tailored ATS-optimized LaTeX resumes (<MM_DD_YY>_res_<Y>.tex)
 │   │   └── cl/                       # Tailored LaTeX cover letters (<MM_DD_YY>_cl_<Y>.tex)
