@@ -19,10 +19,29 @@ fi
 TARGETS_TEX_DIR="$SCRIPT_DIR/targets/src/res"
 TARGETS_RES_DIR="$SCRIPT_DIR/targets/out/res"
 
+resolve_target_res_name() {
+    local name="$1"
+    name="${name%.tex}"
+    name="${name%.pdf}"
+    name="${name%.md}"
+    if [ -f "$TARGETS_TEX_DIR/${name}.tex" ]; then
+        echo "$name"
+        return
+    fi
+    if [[ "$name" =~ ^(.+)_(ctx|cl|res)_([0-9]+)$ ]]; then
+        echo "${BASH_REMATCH[1]}_res_${BASH_REMATCH[3]}"
+        return
+    fi
+    if [[ "$name" =~ ^(.+)_([0-9]+)$ ]]; then
+        echo "${BASH_REMATCH[1]}_res_${BASH_REMATCH[2]}"
+        return
+    fi
+    echo "$name"
+}
+
 build_target_tex() {
-    local target_name="$1"
-    target_name="${target_name%.tex}"
-    target_name="${target_name%.pdf}"
+    local target_name
+    target_name="$(resolve_target_res_name "$1")"
     local tex_path="$TARGETS_TEX_DIR/${target_name}.tex"
 
     if [ ! -f "$tex_path" ]; then
@@ -55,8 +74,7 @@ if [ "$1" = "--target" ] || [ "$1" = "-Target" ] || [ "$1" = "-t" ]; then
 fi
 
 OUTPUT_NAME="${1:-resume.pdf}"
-CANDIDATE_NAME="${OUTPUT_NAME%.pdf}"
-CANDIDATE_NAME="${CANDIDATE_NAME%.tex}"
+CANDIDATE_NAME="$(resolve_target_res_name "$OUTPUT_NAME")"
 
 if [ "$OUTPUT_NAME" != "resume.pdf" ] && [ -f "$TARGETS_TEX_DIR/${CANDIDATE_NAME}.tex" ]; then
     build_target_tex "$CANDIDATE_NAME"

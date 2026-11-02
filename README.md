@@ -72,8 +72,8 @@ To install Tectonic manually if needed:
 # Custom output filename -> out/Juan_Becerra_Resume.pdf
 .\build.ps1 Juan_Becerra_Resume
 
-# Target pipeline build -> targets/out/res/<id>.pdf
-.\build.ps1 -Target 10_26_26_1
+# Target pipeline build -> targets/out/res/<MM_DD_YY>_res_<Y>.pdf
+.\build.ps1 -Target 10_26_26_ctx_1
 
 # Build all targets in targets/src/res/
 .\build.ps1 -AllTargets
@@ -88,8 +88,8 @@ To install Tectonic manually if needed:
 # Custom output filename -> out/Juan_Becerra_Resume.pdf
 ./build.sh Juan_Becerra_Resume
 
-# Target pipeline build -> targets/out/res/<id>.pdf
-./build.sh --target 10_26_26_1
+# Target pipeline build -> targets/out/res/<MM_DD_YY>_res_<Y>.pdf
+./build.sh --target 10_26_26_ctx_1
 
 # Build all targets in targets/src/res/
 ./build.sh --all-targets
@@ -97,20 +97,20 @@ To install Tectonic manually if needed:
 
 #### Option 3: VS Code Interactive Build
 
-1. Open `resume.tex` (or any `targets/src/res/<id>.tex` / `targets/src/cl/<id>.tex`) in VS Code.
+1. Open `resume.tex` (or any `targets/src/res/<MM_DD_YY>_res_<Y>.tex`) in VS Code.
 2. Press <kbd>F5</kbd> to compile instantly via the **LaTeX Instant Runner** extension.
 
 ---
 
 ## Target Application Pipeline (`targets/`)
 
-The `targets/` pipeline generates role-specific, ATS-optimized resumes and cover letters from Markdown job descriptions:
+The `targets/` pipeline generates role-specific, ATS-optimized resumes and cover letters from Markdown job descriptions using the naming convention `<MM_DD_YY>_<X>_<Y>` (where `<X>` is `ctx`, `res`, or `cl`, and `<Y>` is the target number):
 
-1. Place a job description in `targets/ctx/<id>.md`.
+1. Place a job description in `targets/ctx/<MM_DD_YY>_ctx_<Y>.md`.
 2. Run the **`target-pipeline`** skill (located in `.agents/skills/target-pipeline/SKILL.md`), which:
-   - Generates a subtly tailored, ATS-optimized LaTeX resume at `targets/src/res/<id>.tex`.
-   - Compiles the PDF resume to `targets/out/res/<id>.pdf`.
-   - Generates a tailored LaTeX cover letter at `targets/src/cl/<id>.tex` and compiles `targets/out/cl/<id>.pdf`.
+   - Generates a subtly tailored, ATS-optimized LaTeX resume at `targets/src/res/<MM_DD_YY>_res_<Y>.tex`.
+   - Compiles the PDF resume to `targets/out/res/<MM_DD_YY>_res_<Y>.pdf`.
+   - Generates a tailored LaTeX cover letter at `targets/src/cl/<MM_DD_YY>_cl_<Y>.tex` and compiles `targets/out/cl/<MM_DD_YY>_cl_<Y>.pdf`.
 
 ---
 
@@ -122,13 +122,13 @@ The `targets/` pipeline generates role-specific, ATS-optimized resumes and cover
 ├── build.sh                          # Bash build script (root & target pipeline support)
 ├── out/resume.pdf                    # Compiled base PDF resume (tracked in git)
 ├── targets/
-│   ├── ctx/                          # Input job descriptions (<id>.md)
+│   ├── ctx/                          # Input job descriptions (<MM_DD_YY>_ctx_<Y>.md)
 │   ├── src/
-│   │   ├── res/                      # Tailored ATS-optimized LaTeX resumes (<id>.tex)
-│   │   └── cl/                       # Tailored LaTeX cover letters (<id>.tex)
+│   │   ├── res/                      # Tailored ATS-optimized LaTeX resumes (<MM_DD_YY>_res_<Y>.tex)
+│   │   └── cl/                       # Tailored LaTeX cover letters (<MM_DD_YY>_cl_<Y>.tex)
 │   └── out/
-│       ├── res/                      # Compiled target PDF resumes (<id>.pdf)
-│       └── cl/                       # Compiled target PDF cover letters (<id>.pdf)
+│       ├── res/                      # Compiled target PDF resumes (<MM_DD_YY>_res_<Y>.pdf)
+│       └── cl/                       # Compiled target PDF cover letters (<MM_DD_YY>_cl_<Y>.pdf)
 ├── .agents/skills/target-pipeline/   # Workspace skill for the target application pipeline
 ├── GEMINI.md                         # Context & guidelines for Gemini AI
 ├── README.md                         # Repository documentation
