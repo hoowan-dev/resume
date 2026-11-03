@@ -1,0 +1,189 @@
+%-------------------------
+% Resume in Latex
+% Author : Juan Becerra
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generated pdf is machine readable/ATS parsable
+\ifdefined\pdfgentounicode
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+\fi
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.0\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge \scshape Juan Becerra} \\ \vspace{2pt}
+    \textbf{\large Software Engineer -- Engine, Animation \& Systems} \\ \vspace{3pt}
+    \small Seattle, WA ~ $|$ ~
+    \raisebox{-0.1\height}\faPhone\ (208) 550-9191 ~ $|$ ~
+    \href{mailto:becerrajuan007@gmail.com}{\raisebox{-0.2\height}\faEnvelope\ \underline{becerrajuan007@gmail.com}} ~ $|$ ~
+    \href{https://hoowan.dev}{\raisebox{-0.2\height}\faGlobe\ \underline{hoowan.dev}} \\ \vspace{2pt}
+    \href{https://linkedin.com/in/hoowan/}{\raisebox{-0.2\height}\faLinkedin\ \underline{linkedin.com/in/hoowan}} ~ $|$ ~
+    \href{https://github.com/hoowan-dev}{\raisebox{-0.2\height}\faGithub\ \underline{github.com/hoowan-dev}}
+    \vspace{-6pt}
+\end{center}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Electronic Arts -- Lifestyle}{2025 -- Present}
+      {Software Engineer -- Tools \& Tech-Art}{Kirkland, WA}
+      \resumeItemListStart
+        \resumeItem{Engineered a high-throughput Unreal Engine C++ plugin capturing and exporting runtime character trajectory, pose, and velocity state to train and populate motion-matching query databases.}
+        \resumeItem{Architected an extensible, project-agnostic Maya/Python animation stylization tool adopted across multiple internal studios, reducing redundant manual keyframing workflows by over 70\%.}
+        \resumeItem{Prototyped and integrated ML-assisted authoring pipelines into DCC tools (PyTorch, ONNX), enabling automated asset tagging and procedural pose generation without disrupting artist control.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Electronic Arts -- Maxis Studios}{2021 -- 2025}
+      {Software Engineer -- Gameplay \& Animation}{Seattle, WA (Remote)}
+      \resumeItemListStart
+        \resumeItem{Architected a multi-threaded asynchronous path-planning and navigation API in UE5/C++ for \emph{Project Rene} (\emph{The Sims}), enabling deterministic crowd simulation and real-time obstacle avoidance within strict frame budgets ($<$1.5ms).}
+        \resumeItem{Implemented core locomotion, character physics, event systems, and runtime animation in UE5/C++ (motion-matching, distance matching, custom IK solvers), delivering fluid, responsive character behavior.}
+        \resumeItem{Profiled, benchmarked, and optimized runtime CPU, memory, and frame budgets across character evaluation graphs and spatial query sweeps, eliminating hitches during dense crowd simulation scenarios.}
+        \resumeItem{Partnered with gameplay designers, technical animators, and QA to author in-editor tuning tools and visual debuggers, accelerating iteration cycles and authoring loops for complex behavior trees.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Lionbridge}{2020 -- 2021}
+      {Senior Games Test Engineer}{Boise, ID}
+      \resumeItemListStart
+        \resumeItem{Led a team of QA testers performing combinatorial and regression testing for live-service AAA titles, authoring technical repro steps and engine-level diagnostics in JIRA to accelerate developer triage.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+\vspace{-10pt}
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Hoowan Game Engine} $|$ \emph{C++, OpenGL, EnTT, CMake} $|$ \href{https://github.com/juanbecerra0/Hoowan}{\underline{GitHub}}}{Nov. 2020}
+          \resumeItemListStart
+            \resumeItem{Engineered a custom C++ game engine featuring an OpenGL rendering submission pipeline, input and event handling, 2D collision detection and correction, and an EnTT-based entity-component system.}
+            \resumeItem{Constructed a companion desktop editor application for rapid scene composition and entity management.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Agentic Resume Pipeline} $|$ \emph{Claude Code, Gemini, PowerShell, LaTeX} $|$ \href{https://github.com/hoowan-dev/resume}{\underline{GitHub}}}{Oct. 2026}
+          \resumeItemListStart
+            \resumeItem{Orchestrated coding agents with authored skills and scoped context to tailor LaTeX documents against an evidence-backed skills inventory, enforcing truthfulness rules and verifying compiled output.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+\vspace{-10pt}
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: C++ (Modern, Multi-threading), C, C\#, Python, GLSL/HLSL, Lua, JavaScript, TypeScript, Rust} \\
+     \textbf{Engine Systems}{: Animation Runtime (Motion Matching, IK), Async Navigation \& Crowd Simulation, Collision \& Character Physics, Input \& Event Systems, ECS, 3D Math \& Linear Algebra} \\
+     \textbf{Engines \& Graphics}{: Unreal Engine 5 (Source, GAS, Mass/Crowd, Chaos), Unity (DOTS), Custom C++ Engine, OpenGL, Vulkan, GPU Compute} \\
+     \textbf{Performance}{: CPU/Memory Profiling \& Optimization, Multi-threading, Data-Oriented Design, Frame Budgeting} \\
+     \textbf{AI \& Workflows}{: Multi-Agent Orchestration, Context Engineering, Agent Evaluation, Claude Code, Cursor, Codex, PyTorch/ONNX} \\
+     \textbf{Tools \& Infrastructure}{: Unreal Plugins, In-Editor Tooling, Maya API, PySide/Qt, ImGui, Perforce (P4), Git, CMake, CI/CD}
+    }}
+ \end{itemize}
+ \vspace{-12pt}
+
+%-----------EDUCATION-----------
+\section{Education \& Continuing Studies}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Boise State University}{2017 -- 2021}
+      {Bachelor of Science in Computer Science}{Boise, ID}
+    \resumeSubheading
+      {University of Washington (Continuing Education)}{2026 -- Present}
+      {Graduate Coursework in Machine Learning \& Deep Learning (Non-Degree, In Progress)}{Seattle, WA}
+  \resumeSubHeadingListEnd
+
+\end{document}

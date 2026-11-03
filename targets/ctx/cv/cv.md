@@ -68,7 +68,7 @@ Each entry reads: **Skill**: evidence. *Keywords:* matching wording from target 
 - **Combat mechanics**: hitscan raycasting, boss encounters (DoomSlop); vehicle combat and power-ups (BroncoDrome); melee action RPG (Chasm)
 - **Game AI**: AI opponents (BroncoDrome); Suspicion board-game agent; Grocery bagging agent
 - **Physics & collision**: 2D collision detection and correction (Hoowan); rolling physics (3D Marble Game)
-- **Collision algorithms (broad-phase / narrow-phase, GJK, SAT, continuous collision detection)**: confirmed by Juan. *Keywords:* collision detection, time of impact, sweep-and-prune, BVH
+- **Collision algorithms (broad-phase, continuous collision detection)**: confirmed by Juan. No narrow-phase (GJK, SAT) experience. *Keywords:* collision detection, time of impact, sweep-and-prune, BVH
 - **Physics integrators & constraint solvers (semi-implicit Euler, RK, numerical stability)**: confirmed by Juan. *Keywords:* integration schemes, constraint solvers, error control
 - **Input systems**: mouse-and-keyboard event polling (Hoowan)
 - **HUD / UI**: canvas radar minimap and damage indicators (DoomSlop)
@@ -77,7 +77,6 @@ Each entry reads: **Skill**: evidence. *Keywords:* matching wording from target 
 ## 5. Performance & Engineering Quality
 
 - **Profiling & benchmarking**: runtime memory, compute, and frame budgets (Maxis). *Keywords:* performance
-- **Profilers & GPU debuggers (VTune, PIX, Nsight, RenderDoc)**: confirmed by Juan. *Keywords:* profiling/debugging
 - **Frame-budget engineering**: navigation API held under 1.5ms (Maxis). *Keywords:* performance, reliability
 - **Hitch elimination**: character evaluation graphs and spatial query sweeps (Maxis)
 - **Reliability & maintainability tradeoffs**: managing technical risk and long-term maintainability in a shared codebase (Maxis). *Keywords:* pragmatic engineering judgment

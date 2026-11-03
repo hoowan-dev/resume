@@ -101,7 +101,7 @@
 %----------HEADING----------
 \begin{center}
     {\Huge \scshape Juan Becerra} \\ \vspace{2pt}
-    \textbf{\large Software Engineer -- Engine, Gameplay \& Systems} \\ \vspace{3pt}
+    \textbf{\large Software Engineer -- Systems, Performance \& Tools} \\ \vspace{3pt}
     \small Seattle, WA ~ $|$ ~
     \raisebox{-0.1\height}\faPhone\ (208) 550-9191 ~ $|$ ~
     \href{mailto:becerrajuan007@gmail.com}{\raisebox{-0.2\height}\faEnvelope\ \underline{becerrajuan007@gmail.com}} ~ $|$ ~
@@ -119,19 +119,18 @@
       {Electronic Arts -- Lifestyle}{2025 -- Present}
       {Software Engineer -- Tools \& Tech-Art}{Kirkland, WA}
       \resumeItemListStart
-        \resumeItem{Engineered a high-throughput Unreal Engine C++ plugin capturing and exporting runtime character trajectory, pose, and velocity state to train and populate motion-matching query databases.}
-        \resumeItem{Architected an extensible Maya/Python animation stylization tool and authoring pipeline adopted across multiple internal studios, reducing redundant manual keyframing workflows by over 70\%.}
-        \resumeItem{Prototyped and integrated ML-assisted authoring pipelines into DCC tools (PyTorch, ONNX), enabling automated asset tagging and procedural pose generation without disrupting artist control.}
+        \resumeItem{Architected an extensible Maya/Python automation tool adopted across multiple internal studios, reducing redundant manual workflows by over 70\%.}
+        \resumeItem{Engineered a high-throughput Unreal Engine C++ plugin capturing and exporting runtime character trajectory, pose, and velocity data pipelines to populate motion-matching query databases.}
+        \resumeItem{Prototyped and integrated ML-assisted pipelines into production tools (PyTorch, ONNX), enabling automated asset tagging and procedural pose generation without disrupting existing workflows.}
       \resumeItemListEnd
 
     \resumeSubheading
       {Electronic Arts -- Maxis Studios}{2021 -- 2025}
       {Software Engineer -- Gameplay \& Animation}{Seattle, WA (Remote)}
       \resumeItemListStart
-        \resumeItem{Architected a multi-threaded asynchronous path-planning and navigation API in UE5/C++ for \emph{Project Rene} (\emph{The Sims}), enabling deterministic crowd routing and real-time obstacle avoidance within strict frame budgets ($<$1.5ms).}
-        \resumeItem{Profiled, benchmarked, and optimized runtime compute, memory, and frame budgets across character evaluation graphs and spatial query sweeps, eliminating hitches during dense crowd simulation scenarios.}
-        \resumeItem{Implemented core locomotion, character physics, state machines, event systems, and runtime animation in UE5/C++ (motion-matching, distance matching, custom IK solvers), delivering fluid, responsive character behavior.}
-        \resumeItem{Partnered directly with technical animators, gameplay designers, and QA to author in-editor tuning tools and visual debuggers, accelerating designer iteration and authoring loops for complex behavior trees.}
+        \resumeItem{Architected a multi-threaded asynchronous path-planning and navigation API in C++ for \emph{Project Rene} (\emph{The Sims}), serving deterministic routing queries for dense crowds within strict frame budgets ($<$1.5ms).}
+        \resumeItem{Profiled, benchmarked, and optimized runtime compute, memory, and frame budgets across character evaluation graphs and spatial query sweeps in a large, multi-disciplinary UE5/C++ codebase.}
+        \resumeItem{Partnered with designers, technical animators, and QA to build in-editor tuning tools, visual debuggers, and diagnostic workflows that accelerated iteration and issue triage.}
       \resumeItemListEnd
 
     \resumeSubheading
@@ -141,6 +140,20 @@
         \resumeItem{Led a team of QA testers performing combinatorial and regression testing for live-service AAA titles, authoring technical repro steps and engine-level diagnostics in JIRA to accelerate developer triage.}
       \resumeItemListEnd
 
+    \resumeSubheading
+      {TurnUp}{2020}
+      {Software Engineer Intern}{Remote}
+      \resumeItemListStart
+        \resumeItem{Led an intern team building a cross-platform web/mobile app, developing an Express.js API and React Native client while owning pull requests, code reviews, and unit testing.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Boise State University -- Department of Computer Science}{2020}
+      {Undergraduate Research Assistant}{Boise, ID}
+      \resumeItemListStart
+        \resumeItem{Developed a distributed content production pipeline for the \emph{World Museum} project, implementing image processing and compression for web asset management and designing database schemas for asset tagging.}
+      \resumeItemListEnd
+
   \resumeSubHeadingListEnd
 \vspace{-10pt}
 
@@ -148,15 +161,14 @@
 \section{Projects}
     \resumeSubHeadingListStart
       \resumeProjectHeading
-          {\textbf{Hoowan Game Engine} $|$ \emph{C++, OpenGL, EnTT, CMake} $|$ \href{https://github.com/juanbecerra0/Hoowan}{\underline{GitHub}}}{Nov. 2020}
+          {\textbf{Agentic Resume Pipeline} $|$ \emph{Claude Code, Gemini, PowerShell, LaTeX} $|$ \href{https://github.com/hoowan-dev/resume}{\underline{GitHub}}}{Oct. 2026}
           \resumeItemListStart
-            \resumeItem{Engineered a custom C++ game engine featuring 2D collision detection and correction systems, an OpenGL rendering submission pipeline, and input and event handling.}
-            \resumeItem{Integrated an EnTT-based entity-component system (ECS) and constructed a companion desktop editor application for rapid scene composition and entity management.}
+            \resumeItem{Automated an end-to-end document pipeline in which coding agents read job postings, generate tailored LaTeX against an evidence-backed skills inventory, compile via scripted builds, and verify output.}
           \resumeItemListEnd
       \resumeProjectHeading
-          {\textbf{DoomSlop} $|$ \emph{Three.js, Web Audio API, Vite, JavaScript} $|$ \href{https://hoowan-dev.github.io/DoomSlop/}{\underline{Live Demo}} $|$ \href{https://github.com/hoowan-dev/DoomSlop}{\underline{GitHub}}}{Sep. 2026}
+          {\textbf{JAMN Sales Tracker} $|$ \emph{Python, Flask} $|$ \href{https://hoowan.dev/portfolio.html}{\underline{Portfolio}}}{May 2026}
           \resumeItemListStart
-            \resumeItem{Built a real-time 3D first-person shooter featuring hitscan raycasting, responsive movement and camera controls, synthesized Web Audio sound effects, and automated CI/CD deployments.}
+            \resumeItem{Built a Flask service that ingests transactions from Square, Squarespace, and Venmo, normalizes and categorizes records, computes net earnings, and logs results to Google Sheets.}
           \resumeItemListEnd
     \resumeSubHeadingListEnd
 \vspace{-10pt}
@@ -165,12 +177,12 @@
 \section{Technical Skills}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-     \textbf{Languages}{: C++ (Modern, Multi-threading), Python, C\#, Lua, GLSL/HLSL, Rust, Java, JavaScript, SQL} \\
-     \textbf{Physics \& Simulation}{: Collision Detection (Broad/Narrow-Phase, GJK, SAT, CCD), Integrators \& Constraint Solvers, Character Physics, Crowd Simulation} \\
-     \textbf{Engines \& Graphics}{: Unreal Engine 5 (Source, Chaos, GAS, Mass/Crowd), Unity (DOTS/Physics), Custom C++ Engine, OpenGL, Vulkan, GPU Compute (CUDA)} \\
-     \textbf{Performance}{: Data-Oriented Design, Memory Management, Multi-threading, Frame/Memory Budgeting, VTune, PIX, Nsight, RenderDoc} \\
-     \textbf{Animation \& Tools}{: IK, Motion Matching, State Machines, Event Systems, In-Editor Tools, Visual Debuggers, Maya API, PySide/Qt, ImGui} \\
-     \textbf{Quality \& Infrastructure}{: Test Suites, Crash/Regression Triage, Perforce (P4), Git, GitHub Actions, CI/CD, CMake, Visual Studio, JIRA, Linux}
+     \textbf{Languages}{: C++ (Modern, Multi-threading), C\#, Java, Python, TypeScript, JavaScript, SQL, Bash, PowerShell} \\
+     \textbf{Systems \& Design}{: Multi-threaded/Async API Design, Object-Oriented Design \& Design Patterns, Performance Profiling \& Optimization} \\
+     \textbf{Cloud \& Infrastructure}{: AWS, Docker, Linux, CI/CD, GitHub Actions, Git, Perforce (P4), CMake, Visual Studio} \\
+     \textbf{Backend \& Data}{: Express.js/REST APIs, Flask, SQL Server, MySQL/PostgreSQL, Database Schema Design, Third-Party API Integration} \\
+     \textbf{Engineering Practices}{: Code Reviews, Design Reviews, Unit Testing, Test Suites, Technical Roadmap Planning, JIRA} \\
+     \textbf{Tools \& AI}{: Unreal Engine 5, Unity, Maya API, PySide/Qt, PyTorch/ONNX, Claude Code, Cursor, Codex}
     }}
  \end{itemize}
  \vspace{-12pt}
