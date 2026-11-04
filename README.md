@@ -63,39 +63,22 @@ To install Tectonic manually if needed:
 
 ### Build Commands
 
-#### Option 1: PowerShell (Windows)
+#### Option 1: PowerShell
+
+`scripts/build.ps1` takes a `.tex` file and an output directory, and writes `<OutDir>/<name>.pdf`. Add `-KeepLogs` to also keep the build log.
 
 ```powershell
-# Default build -> out/resume.pdf
-.\build.ps1
+# Base resume -> out/resume.pdf
+.\scripts\build.ps1 resume.tex out
 
-# Custom output filename -> out/Juan_Becerra_Resume.pdf
-.\build.ps1 Juan_Becerra_Resume
+# Target resume -> targets/out/res/10_26_26_res_1.pdf
+.\scripts\build.ps1 targets\src\res\10_26_26_res_1.tex targets\out\res
 
-# Target pipeline build -> targets/out/res/<MM_DD_YY>_res_<Y>.pdf
-.\build.ps1 -Target 10_26_26_ctx_1
-
-# Build all targets in targets/src/res/
-.\build.ps1 -AllTargets
+# Target cover letter -> targets/out/cl/10_26_26_cl_1.pdf
+.\scripts\build.ps1 targets\src\cl\10_26_26_cl_1.tex targets\out\cl
 ```
 
-#### Option 2: Bash / Git Bash (Linux / macOS / Windows)
-
-```bash
-# Default build -> out/resume.pdf
-./build.sh
-
-# Custom output filename -> out/Juan_Becerra_Resume.pdf
-./build.sh Juan_Becerra_Resume
-
-# Target pipeline build -> targets/out/res/<MM_DD_YY>_res_<Y>.pdf
-./build.sh --target 10_26_26_ctx_1
-
-# Build all targets in targets/src/res/
-./build.sh --all-targets
-```
-
-#### Option 3: VS Code Interactive Build
+#### Option 2: VS Code Interactive Build
 
 1. Open `resume.tex` (or any `targets/src/res/<MM_DD_YY>_res_<Y>.tex`) in VS Code.
 2. Press <kbd>F5</kbd> to compile instantly via the **LaTeX Instant Runner** extension.
@@ -104,7 +87,25 @@ To install Tectonic manually if needed:
 
 ## Target Application Pipeline (`targets/`)
 
-The `targets/` pipeline generates role-specific, ATS-optimized resumes and cover letters from Markdown job descriptions using the naming convention `<MM_DD_YY>_<X>_<Y>` (where `<X>` is `ctx`, `res`, or `cl`, and `<Y>` is the target number):
+The `targets/` pipeline generates role-specific, ATS-optimized resumes and cover letters from Markdown job descriptions using the naming convention `<MM_DD_YY>_<X>_<Y>` (where `<X>` is `ctx`, `res`, or `cl`, and `<Y>` is the target number).
+
+### From a job link
+
+Requires PowerShell, Tectonic, and the logged-in [`claude` CLI](https://claude.com/claude-code).
+
+```powershell
+# One or more links; a failed link doesn't stop the rest
+.\scripts\make_cv.ps1 "<url>"
+.\scripts\make_cv.ps1 "<url1>", "<url2>"
+
+# A single link, or a text file holding a posting for sites that block fetching
+python src\make_cv.py "<url>"
+python src\make_cv.py posting.txt
+```
+
+Each posting is saved to `targets/ctx/pos/`, then its resume and cover letter are generated and compiled to one page each, using today's date and the next free target number. Review both documents before sending.
+
+### From a saved job description
 
 1. Place a job description in `targets/ctx/pos/<MM_DD_YY>_ctx_<Y>.md`. The skills inventory in `targets/ctx/cv/cv.md` is used as context for every target.
 2. Run the **`target-pipeline`** skill (located in `.agents/skills/target-pipeline/SKILL.md`), which:
@@ -118,8 +119,18 @@ The `targets/` pipeline generates role-specific, ATS-optimized resumes and cover
 
 ```text
 ├── resume.tex                        # Main base LaTeX resume source (single-page, ATS-optimized)
-├── build.ps1                         # PowerShell build script (root & target pipeline support)
-├── build.sh                          # Bash build script (root & target pipeline support)
+├── scripts/
+│   ├── build.ps1                     # Compiles a .tex file into an output directory
+│   └── make_cv.ps1                   # Runs src/make_cv.py for one or more job links
+├── src/
+│   ├── make_cv.py                    # Entry point: job link -> posting, tailored .tex files, and PDFs
+│   ├── posting.py                    # Link or file -> clean job posting
+│   ├── fetch.py                      # Downloads pages and reduces them to text
+│   ├── documents.py                  # Writes and repairs the resume and cover letter
+│   ├── latex.py                      # Compiles through scripts/build.ps1 and counts pages
+│   ├── llm.py                        # Calls Claude through the CLI, with tools disabled
+│   ├── targets.py                    # Target numbering
+│   └── common.py                     # Shared paths and error type
 ├── out/resume.pdf                    # Compiled base PDF resume (tracked in git)
 ├── targets/
 │   ├── ctx/

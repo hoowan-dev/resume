@@ -5,8 +5,16 @@ This project compiles a professional LaTeX resume to PDF using **Tectonic** and 
 ## Architecture & File Structure
 
 - `resume.tex`: Main base LaTeX resume source file (customized based on the Jake Gutierrez template).
-- `build.ps1`: PowerShell build script compiling either root `resume.tex` into `out/` or targeted resumes/cover letters under `targets/src/` into `targets/out/`.
-- `build.sh`: Bash build script for Unix / Git Bash environments supporting both root and `targets/` builds.
+- `scripts/build.ps1`: PowerShell build script compiling a given `.tex` file into a given output directory.
+- `scripts/make_cv.ps1`: Runs `src/make_cv.py` for one or more job posting links.
+- `src/make_cv.py`: Entry point that turns a job posting link into a saved posting, tailored `.tex` files, and PDFs, following the `target-pipeline` skill's rules. Its modules in `src/`:
+  - `posting.py`: Link or file to clean job posting.
+  - `fetch.py`: Downloads pages and reduces them to text.
+  - `documents.py`: Writes and repairs the resume and cover letter.
+  - `latex.py`: Compiles through `scripts/build.ps1` and counts pages.
+  - `llm.py`: Calls Claude through the CLI, with tools disabled.
+  - `targets.py`: Target numbering.
+  - `common.py`: Shared paths and error type.
 - `out/`: Build output directory containing generated base PDFs (`out/resume.pdf`).
 - `targets/`: Targeted job application pipeline (files follow `<MM_DD_YY>_<X>_<Y>` where `<X>` is `ctx`, `res`, or `cl` and `<Y>` is the target number):
   - `targets/ctx/pos/<MM_DD_YY>_ctx_<Y>.md`: Input job description Markdown files.
@@ -24,38 +32,27 @@ This project compiles a professional LaTeX resume to PDF using **Tectonic** and 
 
 ## Build and Run Instructions
 
-### 1. Build via Scripts
-- **PowerShell**:
-  ```powershell
-  # Compile base resume to out/resume.pdf
-  .\build.ps1
+### 1. Build via Script
+`scripts/build.ps1` takes a `.tex` file and an output directory, and writes `<OutDir>/<name>.pdf`. Add `-KeepLogs` to also keep the build log.
 
-  # Compile base resume to custom output name (e.g., out/Juan_Becerra_Resume.pdf)
-  .\build.ps1 Juan_Becerra_Resume
+```powershell
+# Compile base resume to out/resume.pdf
+.\scripts\build.ps1 resume.tex out
 
-  # Compile a specific target resume (targets/src/res/10_26_26_res_1.tex -> targets/out/res/10_26_26_res_1.pdf)
-  .\build.ps1 -Target 10_26_26_ctx_1
+# Compile a target resume to targets/out/res/10_26_26_res_1.pdf
+.\scripts\build.ps1 targets\src\res\10_26_26_res_1.tex targets\out\res
 
-  # Compile all target resumes in targets/src/res/
-  .\build.ps1 -AllTargets
-  ```
+# Compile a target cover letter to targets/out/cl/10_26_26_cl_1.pdf
+.\scripts\build.ps1 targets\src\cl\10_26_26_cl_1.tex targets\out\cl
+```
 
-- **Bash / Git Bash**:
-  ```bash
-  # Compile base resume to out/resume.pdf
-  ./build.sh
+### 2. Generate from Job Links
+```powershell
+# Save each posting, then generate and compile its resume and cover letter
+.\scripts\make_cv.ps1 "<url1>", "<url2>"
+```
 
-  # Compile base resume to custom output name
-  ./build.sh Juan_Becerra_Resume
-
-  # Compile a specific target resume (targets/src/res/10_26_26_res_1.tex -> targets/out/res/10_26_26_res_1.pdf)
-  ./build.sh --target 10_26_26_ctx_1
-
-  # Compile all target resumes in targets/src/res/
-  ./build.sh --all-targets
-  ```
-
-### 2. VS Code Interactive Build
+### 3. VS Code Interactive Build
 - Press <kbd>F5</kbd> to compile the active file using the **LaTeX Instant Runner** extension (Tectonic engine).
 
 ## LaTeX Engine & Compatibility Rules

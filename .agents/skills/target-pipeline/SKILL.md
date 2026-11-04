@@ -66,12 +66,11 @@ Create `targets/src/res/<MM_DD_YY>_res_<Y>.tex` modeled on `resume.tex` (and mat
   - Ensure the compiled document fits cleanly on **1 page**.
 
 ### 3. Compile Resume PDF (`targets/out/res/<MM_DD_YY>_res_<Y>.pdf`)
-Run the root build script to compile `targets/src/res/<MM_DD_YY>_res_<Y>.tex` into `targets/out/res/<MM_DD_YY>_res_<Y>.pdf`:
+Run the build script to compile `targets/src/res/<MM_DD_YY>_res_<Y>.tex` into `targets/out/res/<MM_DD_YY>_res_<Y>.pdf`:
 
 ```powershell
-.\build.ps1 -Target <MM_DD_YY>_ctx_<Y>
+.\scripts\build.ps1 targets\src\res\<MM_DD_YY>_res_<Y>.tex targets\out\res
 ```
-*(Or compile all targets at once with `.\build.ps1 -AllTargets`)*.
 
 Verify that:
 - Tectonic exits with code `0`.
