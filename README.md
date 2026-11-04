@@ -89,6 +89,8 @@ To install Tectonic manually if needed:
 
 The `targets/` pipeline generates role-specific, ATS-optimized resumes and cover letters from Markdown job descriptions using the naming convention `<MM_DD_YY>_<X>_<Y>` (where `<X>` is `ctx`, `res`, or `cl`, and `<Y>` is the target number).
 
+Job postings and generated documents (`targets/ctx/pos/` and `targets/src/`) are private and git-ignored, so they exist only on the machine that created them. A fresh clone needs those folders recreated before running the pipeline.
+
 ### From a job link
 
 Requires PowerShell, Tectonic, and the logged-in [`claude` CLI](https://claude.com/claude-code).

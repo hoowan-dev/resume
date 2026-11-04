@@ -20,3 +20,7 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
+
+# Job applications: private, kept on this machine only
+targets/ctx/pos/
+targets/src/
