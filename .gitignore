@@ -13,6 +13,9 @@ targets/out/
 *.fdb_latexmk
 *.synctex.gz
 
+# Python bytecode
+__pycache__/
+
 # OS artifacts
 .DS_Store
 Thumbs.db
