@@ -89,7 +89,7 @@ To install Tectonic manually if needed:
 
 The `targets/` pipeline generates role-specific, ATS-optimized resumes and cover letters from Markdown job descriptions using the naming convention `<MM_DD_YY>_<X>_<Y>` (where `<X>` is `ctx`, `res`, or `cl`, and `<Y>` is the target number).
 
-Job postings and generated documents (`targets/ctx/pos/` and `targets/src/`) are private and git-ignored, so they exist only on the machine that created them. A fresh clone needs those folders recreated before running the pipeline.
+Everything under `targets/` (job postings, the skills inventory, and generated documents) is private and git-ignored, so it exists only on the machine that created it. On a fresh clone, the pipeline needs `targets/ctx/cv/cv.md` plus the style examples named in `src/documents.py` before it can run.
 
 ### From a job link
 
